@@ -1,0 +1,46 @@
+flask import Flask, render_template, request, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash app = Flask(  name  )
+users = {}
+
+@app.route('/')
+def index():
+return render_template('index.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+username = request.form.get('username') password = requesfromt.form.get('password') if username in users:
+if check_password_hash(users.get(username), password): return redirect(url_for('success'))
+return redirect(url_for('index'))
+
+@app.route('/success')
+def success():
+return 'Success!'
+
+if   name	 == '  main  ': app.run(debug=True)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Library Management System</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th, td {
+border: 1px solid #ddd; padding: 8px;
+text-align: left;
+}
+
+th {
+background-color: #f2f2f2;
+}
+CREATE TABLE Books (
+book_id INT PRIMARY KEY, title VARCHAR(255) NOT NULL, author VARCHAR(255) NOT NULL,
+publisher VARCHAR(255) NOT NULL, publish_year INT NOT NULL,
+genre VARCHAR(255) NOT NULL,
+copies INT NOT NULL
